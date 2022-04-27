@@ -1,0 +1,34 @@
+{% extends "public/templates/public_template.html" %}
+
+{% block title %}Jinja{% endblock %}
+
+{% block main %}
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+
+      <h3>Hello I'm {{ my_name }}!</h3>
+
+      <h4>My Info :D </h4>
+      <strong class="d-block mb-3">Programming languages</strong>
+      <hr>
+      <ul>
+        {% for lang in langs %}
+        <li> {{ lang }} </li>
+        {% endfor %}
+      </ul>
+     
+      <strong class="d-block mb-3">Friends & ages</strong>
+      <hr>
+      <ul>
+        {% for name, age in friends.items() %}
+        <li>{{ name }}: {{ age }}</li>
+        {% endfor %}
+      </ul>
+
+      </div>
+  </div>
+</div>
+
+{% endblock %}
