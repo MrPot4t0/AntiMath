@@ -1,4 +1,7 @@
 # AntiMath
+
+![Logo](./logo.png "Logo")
+
 ## Project Description
 AntyMath is a web app to resolve exercises of integral calculus, the project emerged by my friend, who has the idea to create the app, we both didn't do very well in integral calculus, and he thinks we can create an app to do it for us.
 
