@@ -1,5 +1,6 @@
 from app import app
 from flask import render_template
+from flask import request
 
 @app.route("/")
 def index():    
@@ -9,61 +10,21 @@ def index():
 def about():
     return render_template("public/about.html") 
     
-@app.route("/jinja")
-def jinja():
-    # Strings
-    my_name = "Cristopher"
+@app.route("/login")
+def sign_up():
+    return render_template("public/login.html")
 
-    # Integers
-    my_age = 5000
+@app.route("/signup/", methods=["GET", "POST"])
+def show_signup_form():
+    if request.method == "POST":
+        name = request.form['name']
+        email = request.form['email']
+        password = request.form['password']
 
-    # Lists
-    langs = ["Python", "C Tic-Tac-Toe", "Spanish"]
-
-    # Dictionaries
-    friends = {
-        "The Guru": 43,
-        "The K3n": 28,
-        "Mr. Pot4t0": 26,
-    }
-
-    # Tuples
-    colors = ("Red", "Blue")
-
-    # Booleans
-    cool = True
-
-    # Classes
-    class GitRemote:
-        def __init__(self, name, description, domain):
-            self.name = name
-            self.description = description 
-            self.domain = domain
-
-        def pull(self):
-            return f"Pulling repo '{self.name}'"
-
-        def clone(self, repo):
-            return f"Cloning into {repo}"
-
-    my_remote = GitRemote(
-        name="Learning Flask to exploit Flask an create AntiMath",
-        description="AntiMath is a ransomware disguised as a calulator",
-        domain="https://github.com/Mr. Pot4t0"
-    )
-
-    # Functions
-    def repeat(x, qty=1):
-        return x * qty
-
-    return render_template(
-        "public/jinja.html", my_name=my_name, my_age=my_age, langs=langs,
-        friends=friends, colors=colors, cool=cool, GitRemote=GitRemote, 
-        my_remote=my_remote, repeat=repeat
-    )
-
-    @app.route("/login")
-    def sign_up():
-        return render_template("public/login.html")
+        next = request.args.get('next', None)
+        if next:
+            return redirect(next)
+        return redirect(url_for('index'))
+    return render_template("public/singup_form.html")
 
 
