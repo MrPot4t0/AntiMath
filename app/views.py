@@ -1,6 +1,5 @@
-from app import app
-from flask import render_template
-from flask import request
+from app import app 
+from flask import render_template, request
 
 @app.route("/")
 def index():    
@@ -14,17 +13,5 @@ def about():
 def sign_up():
     return render_template("public/login.html")
 
-@app.route("/signup/", methods=["GET", "POST"])
-def show_signup_form():
-    if request.method == "POST":
-        name = request.form['name']
-        email = request.form['email']
-        password = request.form['password']
-
-        next = request.args.get('next', None)
-        if next:
-            return redirect(next)
-        return redirect(url_for('index'))
-    return render_template("public/singup_form.html")
 
 
