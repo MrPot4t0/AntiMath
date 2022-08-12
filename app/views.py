@@ -7,7 +7,7 @@ def index():
 
 @app.route("/profile")
 def about():
-    return render_template("public/about.html")
+    return render_template("public/profile.html")
 
 @app.route("/singup")
 def singup():
